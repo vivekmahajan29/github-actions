@@ -1,0 +1,13 @@
+name: Containers Example
+
+on: workflow_dispatch
+
+jobs: 
+  container-job:
+    runs-on: ubuntu-latest
+    container: mcr.microsoft.com/dotnet/sdk:8.0
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: List dir
+        run: ls -la
