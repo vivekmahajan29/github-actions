@@ -10,6 +10,13 @@ jobs:
       image: mcr.microsoft.com/dotnet/sdk:8.0
       env: 
         name: vivek
+    services: 
+      mongodb:
+        image: mongo
+        env:
+          MONGO_INITDB_ROOT_USERNAME: root
+          MONGO_INITDB_ROOT_PASSWORD: example
+            
     
     steps:
       - name: Checkout code
