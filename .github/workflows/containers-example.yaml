@@ -7,16 +7,20 @@ jobs:
     runs-on: ubuntu-latest
 #    container: mcr.microsoft.com/dotnet/sdk:8.0
     container: 
-      image: mcr.microsoft.com/dotnet/sdk:8.0
+      image:  yauritux/busybox-curl
       env: 
         name: vivek
-    services: 
+    services:
+      nginx:
+        image: nginx
+#        ports:
+#          - 8080:80
       mongodb:
         image: mongo
         env:
           MONGO_INITDB_ROOT_USERNAME: root
           MONGO_INITDB_ROOT_PASSWORD: example
-            
+      
     
     steps:
       - name: Checkout code
@@ -25,3 +29,5 @@ jobs:
         run: ls -la
       - name: Print env variable
         run: echo $name
+      - name: Test nginx
+        run: curl http://nginx
