@@ -2,32 +2,44 @@ name: Containers Example
 
 on: workflow_dispatch
 
-jobs: 
+jobs:
+  simple-job:
+    runs-on: ubuntu-latest
+    services:
+      nginx:
+        image: nginx
+        ports:
+          - 8080:80
+    
+    steps:
+      - name: Test nginx
+        run: curl http://127.0.0.1:8080
+  
   container-job:
     runs-on: ubuntu-latest
-#    container: mcr.microsoft.com/dotnet/sdk:8.0
-    container: 
-#      image: mcr.microsoft.com/dotnet/sdk:8.0
-      image:  yauritux/busybox-curl
-      env: 
+    #    container: mcr.microsoft.com/dotnet/sdk:8.0
+    container:
+      #      image: mcr.microsoft.com/dotnet/sdk:8.0
+      image: yauritux/busybox-curl
+      env:
         name: vivek
     services:
       nginx:
         image: nginx
-#        ports:
-#          - 8080:80
+      #        ports:
+      #          - 8080:80
       mongodb:
         image: mongo
         env:
           MONGO_INITDB_ROOT_USERNAME: root
           MONGO_INITDB_ROOT_PASSWORD: example
-      
+    
     
     steps:
-#      - name: Checkout code
-#        uses: actions/checkout@v4
-#      - name: List dir
-#        run: ls -la
+      #      - name: Checkout code
+      #        uses: actions/checkout@v4
+      #      - name: List dir
+      #        run: ls -la
       - name: Print env variable
         run: echo $name
       - name: Test nginx
