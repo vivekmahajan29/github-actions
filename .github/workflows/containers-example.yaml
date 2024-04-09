@@ -7,6 +7,7 @@ jobs:
     runs-on: ubuntu-latest
 #    container: mcr.microsoft.com/dotnet/sdk:8.0
     container: 
+#      image: mcr.microsoft.com/dotnet/sdk:8.0
       image:  yauritux/busybox-curl
       env: 
         name: vivek
@@ -23,10 +24,10 @@ jobs:
       
     
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: List dir
-        run: ls -la
+#      - name: Checkout code
+#        uses: actions/checkout@v4
+#      - name: List dir
+#        run: ls -la
       - name: Print env variable
         run: echo $name
       - name: Test nginx
