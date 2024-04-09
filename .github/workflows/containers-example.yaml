@@ -5,9 +5,16 @@ on: workflow_dispatch
 jobs: 
   container-job:
     runs-on: ubuntu-latest
-    container: mcr.microsoft.com/dotnet/sdk:8.0
+#    container: mcr.microsoft.com/dotnet/sdk:8.0
+    container: 
+      image: mcr.microsoft.com/dotnet/sdk:8.0
+      env: 
+        name: vivek
+    
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: List dir
         run: ls -la
+      - name: Print env variable
+        run: echo $name
